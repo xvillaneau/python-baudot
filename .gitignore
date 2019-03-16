@@ -2,6 +2,8 @@ build/
 dist/
 *.egg-info/
 
+docs/_build/
+
 .python-version
 .venv/
 .idea/

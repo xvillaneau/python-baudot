@@ -1,3 +1,25 @@
+"""
+Handler for reading and writing to pretty tape-like formatted text
+
+For example, the tape might look like:::
+
+    ***.**
+    * *.
+       . *
+    *  .*
+    *  .*
+    ** .
+      *.
+    *  .**
+    ** .
+     * .*
+    *  .*
+     * . *
+    ** .**
+     **. *
+
+(Which reads 'HELLO WORLD!')
+"""
 
 from collections import namedtuple
 from io import TextIOBase
@@ -10,6 +32,9 @@ MSB_FIRST = [1 << (4-n) for n in range(5)]
 
 
 class TapeReader(BaudotReader):
+    """
+    Reader class for tape-like data.
+    """
 
     def __init__(self, stream: TextIOBase, config: TapeConfig):
         self.stream = stream
@@ -22,6 +47,9 @@ class TapeReader(BaudotReader):
 
 
 class TapeWriter(BaudotWriter):
+    """
+    Writer class for tape-like data.
+    """
 
     def __init__(self, stream: TextIOBase, config: TapeConfig, flush=False):
         self.stream = stream
@@ -29,6 +57,7 @@ class TapeWriter(BaudotWriter):
         self.flush = flush
 
     def write(self, code: int):
+        """Writes a code to tape"""
         if not 0 <= code < 32:
             raise ValueError('Invalid 5-bit character code')
 

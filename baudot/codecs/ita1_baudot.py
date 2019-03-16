@@ -1,4 +1,7 @@
-# pylint: disable=invalid-name,bad-whitespace
+"""
+Codec definitions for first-generation Baudot codes (a.k.a. ITA1)
+"""
+# pylint: disable=invalid-name
 
 from .core import Shift, SimpleTabledCodec
 

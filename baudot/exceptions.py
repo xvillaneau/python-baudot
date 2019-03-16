@@ -1,4 +1,9 @@
 
+"""
+Custom exceptions for the Baudot library
+"""
+
+
 class BaudotException(Exception):
     """Core exception class for this library"""
 
