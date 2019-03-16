@@ -10,6 +10,7 @@ setup(
     license='LGPLv3',
     python_requires='>=3.6.0',
     packages=find_packages(exclude=('tests',)),
+    test_requires=["pytest", "hypothesis", "coverage", "pylint"],
     classifiers=[
         'Development Status :: 1 - Planning',
         'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',

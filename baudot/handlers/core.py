@@ -1,10 +1,15 @@
 
 from abc import ABC, abstractmethod
-from collections.abc import Iterator
 
 
-class BaudotReader(Iterator, ABC):
-    pass
+class BaudotReader(ABC):
+
+    def __iter__(self):
+        return self
+
+    @abstractmethod
+    def __next__(self):
+        pass
 
 
 class BaudotWriter(ABC):

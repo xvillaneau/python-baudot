@@ -25,7 +25,7 @@ def encode(stream: TextIOBase, codec: BaudotCodec, writer: BaudotWriter):
             buffer.append(state_code)
             state = new_state
 
-        while len(buffer) > 0:
+        while buffer:
             writer.write(buffer.pop(-1))
 
 

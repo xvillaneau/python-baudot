@@ -5,4 +5,5 @@ dist/
 .python-version
 .venv/
 .idea/
+.hypothesis/
 __pycache__/
