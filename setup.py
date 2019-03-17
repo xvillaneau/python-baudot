@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='baudot',
-    version='0.1.0',
+    version='0.1.1.post1',
     description='Tools for handling stateful 5-bit encoding',
     author='Xavier Villaneau',
     author_email='xvillaneau+baudot@gmail.com',
