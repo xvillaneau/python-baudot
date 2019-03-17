@@ -11,4 +11,7 @@ install:
 
 script:
   - pylint baudot/
-  - pytest --cov baudot/ tests/
+  - coverage run --source baudot/ -m pytest tests/
+
+after_success:
+  - coverage report
