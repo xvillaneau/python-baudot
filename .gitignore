@@ -8,4 +8,6 @@ docs/_build/
 .venv/
 .idea/
 .hypothesis/
+.mypy_cache/
+.coverage
 __pycache__/
