@@ -69,4 +69,5 @@ It does not have any external requirement.
 
 ## Docs
 
-Coming soon
+Documentation is available at: 
+https://python-baudot.readthedocs.io/
