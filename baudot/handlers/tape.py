@@ -25,8 +25,14 @@ from collections import namedtuple
 from io import TextIOBase
 
 from .core import BaudotReader, BaudotWriter
+from ..exceptions import WriteError
 
-TapeConfig = namedtuple('PrettyConfig', ('punch', 'blank', 'sep'))
+TapeConfig = namedtuple('TapeConfig', ('punch', 'blank', 'sep'))
+TapeConfig.__doc__ = """
+Object for storing a tape representation format.
+"""
+
+DEFAULT_TAPE = TapeConfig('*', ' ', '.')
 
 MSB_FIRST = [1 << (4-n) for n in range(5)]
 
@@ -36,7 +42,7 @@ class TapeReader(BaudotReader):
     Reader class for tape-like data.
     """
 
-    def __init__(self, stream: TextIOBase, config: TapeConfig):
+    def __init__(self, stream: TextIOBase, config: TapeConfig = DEFAULT_TAPE):
         self.stream = stream
         self.config = config
 
@@ -51,19 +57,15 @@ class TapeWriter(BaudotWriter):
     Writer class for tape-like data.
     """
 
-    def __init__(self, stream: TextIOBase, config: TapeConfig, flush=False):
+    def __init__(self, stream: TextIOBase, config: TapeConfig = DEFAULT_TAPE):
         self.stream = stream
         self.config = config
-        self.flush = flush
 
     def write(self, code: int):
         """Writes a code to tape"""
         if not 0 <= code < 32:
-            raise ValueError('Invalid 5-bit character code')
+            raise WriteError('Invalid 5-bit character code')
 
         chars = ''.join(self.config.punch if c == '1' else self.config.blank
                         for c in f'{code:05b}')
         self.stream.write(f"{chars[:3]}{self.config.sep}{chars[3:]}\n")
-
-        if self.flush:
-            self.stream.flush()

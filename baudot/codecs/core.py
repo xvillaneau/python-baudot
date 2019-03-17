@@ -21,7 +21,11 @@ Table = List[Value]
 
 
 class BaudotCodec(ABC):
-    """Abstract Base Class for a Codec"""
+    """
+    Abstract Base Class for a Codec
+
+    Subclasses must implement :py:meth:`encode` and :py:meth:`decode`
+    """
 
     @abstractmethod
     def encode(self, value: Value, state: Shift) -> Tuple[int, Shift]:
@@ -48,7 +52,7 @@ class SimpleTabledCodec(BaudotCodec):
     library knows of. Any other must be taken from ASCII/Unicode.
     """
 
-    __slots__ = ['name', 'shifts', 'alphabet', 'decoding_table'
+    __slots__ = ['name', 'shifts', 'alphabet', 'decoding_table',
                  'encoding_single', 'encoding_any', 'encoding_others']
 
     def __init__(self, name: str, tables: Dict[Shift, Table]):

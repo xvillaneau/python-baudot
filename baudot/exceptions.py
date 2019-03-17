@@ -18,3 +18,11 @@ class DecodingError(BaudotException):
 
 class EncodingError(BaudotException):
     """Raised on encoding error"""
+
+
+class ReadError(BaudotException):
+    """Raised when reading a 5-bit stream fails"""
+
+
+class WriteError(BaudotException):
+    """Raised when writing a 5-bit stream fails"""

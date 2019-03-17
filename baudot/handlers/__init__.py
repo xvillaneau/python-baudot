@@ -6,3 +6,4 @@ from a variety of formats.
 
 from .core import BaudotWriter, BaudotReader
 from .tape import TapeReader, TapeWriter, TapeConfig
+from .hexbytes import HexBytesReader, HexBytesWriter
