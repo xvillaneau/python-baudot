@@ -27,21 +27,21 @@ likely ill-designed at this point. Suggestions are welcome!
 
 setup(
     name='baudot',
-    version='0.1.1.post2',
+    version='0.2.0.dev0',
     description='Tools for handling stateful 5-bit encoding',
     long_description=LONG_DESC,
     author='Xavier Villaneau',
     author_email='xvillaneau+baudot@gmail.com',
     url='https://github.com/xvillaneau/python-baudot',
     license='LGPLv3',
-    python_requires='>=3.6.0',
+    python_requires='>=3.7.0',
     packages=find_packages(exclude=('tests',)),
     test_requires=["pytest", "hypothesis", "coverage", "pylint"],
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Communications',
     ],
 )

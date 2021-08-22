@@ -64,7 +64,7 @@ Pip is the simplest way to install Baudot:
 
     pip install baudot
 
-This library works with Python 3.6 and up.
+This library works with Python 3.7 and up.
 It does not have any external requirement.
 
 ## Docs
