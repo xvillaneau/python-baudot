@@ -17,7 +17,7 @@ CODECS = (ITA1_CONTINENTAL, ITA2_STANDARD, ITA2_US)
 @st.composite
 def tape_config_strategy(draw):
     chars = st.characters(blacklist_categories=('Cc',))
-    punch, blank, _sep = draw(st.sets(chars, 3, 3))
+    punch, blank, _sep = draw(st.sets(chars, min_size=3, max_size=3))
     sep = draw(st.one_of(st.just(''), st.just(_sep)))
     return handlers.TapeConfig(punch, blank, sep)
 
