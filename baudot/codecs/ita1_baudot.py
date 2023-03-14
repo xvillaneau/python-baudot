@@ -2,13 +2,19 @@
 Codec definitions for first-generation Baudot codes (a.k.a. ITA1)
 """
 # pylint: disable=invalid-name
+from __future__ import annotations
+
+from typing import Dict, List, TYPE_CHECKING
 
 from .core import Shift, SimpleTabledCodec
+
+if TYPE_CHECKING:
+    from .core import Value
 
 Figures = Shift('Figures')
 Letters = Shift('Letters')
 
-CONTINENTAL_TABLE = {
+CONTINENTAL_TABLE: Dict[Shift, List[Value]] = {
     Letters: [
         ' ', 'A', 'E', 'É', 'Y', 'U', 'I', 'O',
         Figures, 'J', 'G', 'H', 'B', 'C', 'F', 'D',
@@ -23,7 +29,7 @@ CONTINENTAL_TABLE = {
     ],
 }
 
-UK_TABLE = {
+UK_TABLE: Dict[Shift, List[Value]] = {
     Letters: [
         ' ', 'A', 'E', '/', 'Y', 'U', 'I', 'O',
         Figures, 'J', 'G', 'H', 'B', 'C', 'F', 'D',

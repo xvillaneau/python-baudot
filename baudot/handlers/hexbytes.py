@@ -16,7 +16,7 @@ class HexBytesReader(BaudotReader):
     def __init__(self, stream: BufferedIOBase):
         self.stream = stream
 
-    def __next__(self):
+    def __next__(self) -> int:
         hex_byte = self.stream.read(2)
         if not hex_byte:
             raise StopIteration()
@@ -38,7 +38,7 @@ class HexBytesWriter(BaudotWriter):
     def __init__(self, stream: BufferedIOBase):
         self.stream = stream
 
-    def write(self, code: int):
+    def write(self, code: int) -> None:
         """Writes a code as an hexadecimal value"""
         if not 0 <= code < 32:
             raise WriteError('Invalid 5-bit character code')

@@ -28,13 +28,17 @@ class BaudotCodec(ABC):
     """
 
     @abstractmethod
-    def encode(self, value: Value, state: Shift) -> Tuple[int, Shift]:
+    def encode(
+        self,
+        value: Value,
+        state: Optional[Shift]
+    ) -> Tuple[int, Optional[Shift]]:
         """
         Abstract method for encoding a single character or state shift
         """
 
     @abstractmethod
-    def decode(self, code: int, state: Shift) -> Union[str, Shift]:
+    def decode(self, code: int, state: Optional[Shift]) -> Union[str, Shift]:
         """
         Abstract method for decoding a single code.
         """
@@ -71,7 +75,11 @@ class SimpleTabledCodec(BaudotCodec):
         self.encoding_any: Dict[Value, int] = enc_any
         self.encoding_others: Dict[Value, Set[Tuple[int, Shift]]] = enc_others
 
-    def encode(self, value: Value, state: Shift) -> Tuple[int, Shift]:
+    def encode(
+        self,
+        value: Value,
+        state: Optional[Shift]
+    ) -> Tuple[int, Optional[Shift]]:
         """
         Get the code of the given character of Shift for this codec.
 
@@ -134,7 +142,7 @@ class SimpleTabledCodec(BaudotCodec):
         return self.decoding_table[state][code]
 
 
-def _verify_tables(tables: Dict[Shift, Table]):
+def _verify_tables(tables: Dict[Shift, Table]) -> None:
     """
     Function for verifying that a given input table is correct
     """
@@ -155,7 +163,13 @@ def _verify_tables(tables: Dict[Shift, Table]):
         raise IncoherentTable("Shifts in the tables don't match their keys")
 
 
-def _make_simple_encoding_table(tables: Dict[Shift, Table]):
+def _make_simple_encoding_table(
+        tables: Dict[Shift, Table]
+    ) -> Tuple[
+        Dict[Value, Tuple[int, Shift]],
+        Dict[Value, int],
+        Dict[Value, Set[Tuple[int, Shift]]],
+    ]:
     """
     Generates the encoding tables by reversing the decoding table
     """

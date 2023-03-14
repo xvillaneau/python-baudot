@@ -36,6 +36,7 @@ setup(
     license='LGPLv3',
     python_requires='>=3.7.0',
     packages=find_packages(exclude=('tests',)),
+    package_data={"baudot": ["py.typed"]},
     test_requires=["pytest", "hypothesis", "coverage", "pylint"],
     classifiers=[
         'Development Status :: 4 - Beta',
