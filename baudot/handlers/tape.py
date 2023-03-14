@@ -61,7 +61,7 @@ class TapeWriter(BaudotWriter):
         self.stream = stream
         self.config = config
 
-    def write(self, code: int):
+    def write(self, code: int) -> None:
         """Writes a code to tape"""
         if not 0 <= code < 32:
             raise WriteError('Invalid 5-bit character code')

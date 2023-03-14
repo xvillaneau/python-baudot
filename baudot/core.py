@@ -9,7 +9,7 @@ from .handlers import BaudotReader, BaudotWriter
 from .codecs import BaudotCodec, Shift
 
 
-def encode(stream: TextIOBase, codec: BaudotCodec, writer: BaudotWriter):
+def encode(stream: TextIOBase, codec: BaudotCodec, writer: BaudotWriter) -> None:
     """
     Encode unicode characters from an input stream to an output writer,
     using the given codec.
@@ -30,6 +30,7 @@ def encode(stream: TextIOBase, codec: BaudotCodec, writer: BaudotWriter):
         buffer.append(code)
 
         if new_state != state:
+            assert new_state is not None
             state_code, _ = codec.encode(new_state, None)
             buffer.append(state_code)
             state = new_state
@@ -38,7 +39,7 @@ def encode(stream: TextIOBase, codec: BaudotCodec, writer: BaudotWriter):
             writer.write(buffer.pop(-1))
 
 
-def encode_str(chars: str, codec: BaudotCodec, writer: BaudotWriter):
+def encode_str(chars: str, codec: BaudotCodec, writer: BaudotWriter) -> None:
     """
     Encode unicode characters from an input string to an output writer,
     using the given codec.
@@ -51,7 +52,7 @@ def encode_str(chars: str, codec: BaudotCodec, writer: BaudotWriter):
         encode(stream, codec, writer)
 
 
-def decode(reader: BaudotReader, codec: BaudotCodec, stream: TextIOBase):
+def decode(reader: BaudotReader, codec: BaudotCodec, stream: TextIOBase) -> None:
     """
     Decode a baudot code stream from a reader to a unicode stream,
     using a given codec.

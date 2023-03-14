@@ -3,13 +3,19 @@ Codec definitions for second-generation Baudot codes
 (a.k.a. Baudot-Murray or ITA2)
 """
 # pylint: disable=invalid-name
+from __future__ import annotations
+
+from typing import Dict, List, TYPE_CHECKING
 
 from .core import Shift, SimpleTabledCodec
+
+if TYPE_CHECKING:
+    from .core import Value
 
 Letters = Shift('Letters')
 Figures = Shift('Figures')
 
-STANDARD_TABLE = {
+STANDARD_TABLE: Dict[Shift, List[Value]] = {
     Letters: [
         '\x00', 'E', '\n', 'A', ' ', 'S', 'I', 'U',
         '\r', 'D', 'R', 'J', 'N', 'F', 'C', 'K',
@@ -24,7 +30,7 @@ STANDARD_TABLE = {
     ],
 }
 
-US_TABLE = {
+US_TABLE: Dict[Shift, List[Value]] = {
     Letters: STANDARD_TABLE[Letters].copy(),
     Figures: [
         '\x00', '3', '\n', '-', ' ', '\x07', '8', '7',
